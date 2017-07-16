@@ -5,4 +5,4 @@
  * Date: 16.07.2017
  * Time: 13:13
  */
-echo 'Rede';
+echo 'Red';
