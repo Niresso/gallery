@@ -10,6 +10,9 @@ class GalleryController
 {
 public function actionIndex(){
 
+    $user = new Gallery;
+    @$gallery = $user->getPictures();
+
     require_once(ROOT . '/views/index.php');
     return true;
 }
