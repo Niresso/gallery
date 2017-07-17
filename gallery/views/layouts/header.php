@@ -7,7 +7,10 @@
     <meta name="description" content="#" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Online gallery</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/template/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/template/style/main.css">
+    <script type="text/javascript" src="/template/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/template/script/jquery-3.2.1.min.js"></script>
 
 </head>
 <body>
