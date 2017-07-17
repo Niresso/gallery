@@ -1,12 +1,6 @@
-
 <?php
 
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 17.07.2017
- * Time: 14:10
- */
+
 class Gallery
 {
     public $name;
@@ -18,9 +12,9 @@ class Gallery
 
     public function __construct()
     {
-        $this->name = $_POST['name'];
-        $this->comment = $_POST['comment'];
-        $this->size = $_FILES['picture']['size'];
+        @$this->name = $_POST['name'];
+        @$this->comment = $_POST['comment'];
+        @$this->size = $_FILES['picture']['size'];
     }
 
 
@@ -56,6 +50,25 @@ class Gallery
         }
         return  $gallery;
     }
+
+    /**
+     * @return bool
+     */
+    public function addPictures(){
+
+        $db = Db::getConnection();
+            $result = $db->prepare('INSERT INTO pictures (name,format,size,comment) VALUE (?,?,?,?)');
+        $result->bindParam(1,$this->name);
+        $result->bindParam(2,$this->type);
+        $result->bindParam(3,$this->size);
+        $result->bindParam(4,$this->comment);
+        $result->execute();
+        return $this->checkPathImages();
+    }
+
+    /**
+     * @return mixed
+     */
     public function getTotalID(){
 
         $db = Db::getConnection();
@@ -66,9 +79,12 @@ class Gallery
             $TotalID[$i]['id'] = $row['id'];
             $i++;
         }
-        return $TotalID[0]['id'];
+        return @$TotalID[0]['id'];
     }
 
+    /**
+     * @return bool
+     */
     public function checkPathImages(){
         $tmp_name = 'pic'.$this->getTotalID().'.'.$this->type;
         if (@copy($_FILES['picture']['tmp_name'], $this->path . $_FILES['name'].$tmp_name)){
@@ -77,25 +93,5 @@ class Gallery
         return false;
     }
 
-    public function addPictures(){
-
-        $db = Db::getConnection();
-            $result = $db->prepare('INSERT INTO pictures (name,format,size,comment) VALUE (?,?,?,?)');
-        $result->bindParam(1,$this->name);
-        $result->bindParam(2,$this->type);
-        $result->bindParam(3,$this->size);
-        $result->bindParam(4,$this->comment);
-        $result->execute();
-    }
-
-    /**
-     * @param mixed $format
-     * @return Gallery
-     */
-    public function setFormat($format)
-    {
-        $this->format = $format;
-        return $this;
-    }
 
 }
