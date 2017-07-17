@@ -1,6 +1,6 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 
-    <div class="jumbotron">
+    <div class="jumbotron" xmlns="http://www.w3.org/1999/html">
         <div class="container">
             <h1>Онлайн галерея:</h1>
         </div>
@@ -33,32 +33,37 @@
                 </div><!-- /.container-fluid -->
             </nav>
         </div>
-    <div class="container">
-        <div id="add-pictures"></div>
-    </div>
+        <div class="container">
+            <div id="add-pictures"></div>
+
+        </div>
 
         <div class="container">
             <div id="gallery"></div>
-            <pre><?  print_r($gallery); ?>'</pre>'
+            <pre><? print_r($gallery); ?>'</pre>'
         </div>
 
         <script>
             $(document).ready(function () {
                 $('#btn-add-picture').click(function () {
                     $("#add-pictures").empty()
-                    .append("<form  class='form-add-pictures'></form>");
+                        .append("<form  method='post' class='form-add-pictures' enctype='multipart/form-data'></form>");
                     $(".form-add-pictures").append("<div class='form-group' id='f1'></div>")
-                    .append("<div class='form-group' id='f3'></div>")
-                    .append("<div class='form-group' id='f2'></div>")
-                    .append(" <button type='submit' class='btn btn-default'>Отправить</button>");
+                        .append("<div class='form-group' id='f3'></div>")
+                        .append("<div class='form-group' id='f2'></div>")
+                        .append(" <input type='submit' class='btn btn-default' name='submit'>");
                     $("#f1").append("<label for='exampleInputEmail1'>Название картинки:</label>")
-                        .append("<input type='text' class='form-control' id='exampleInputEmail1' placeholder='Enter name'>");
+                        .append("<input type='text' class='form-control' id='exampleInputEmail1' name='name' placeholder='Enter name'>");
                     $("#f3").append(" <label for='exampleInputFile'>Файл:</label>")
-                        .append("<input type='file' id='exampleInputFile'>");
+                        .append("<input type='file' id='exampleInputFile' name='picture'>");
                     $("#f2").append("<label for='exampleInputPassword1'>Коментарий:</label>")
-                        .append("<textarea name='textarea' class='form-control' rows='3'  maxlength='200'></textarea>");
-
+                        .append("<textarea name='comment' class='form-control' rows='3'  maxlength='200'></textarea>");
                 })
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+
             })
         </script>
     </div>
