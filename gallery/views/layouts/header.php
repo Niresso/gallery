@@ -8,9 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Online gallery</title>
     <link rel="stylesheet" href="/template/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/template/bootstrap/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/template/style/main.css">
-    <script type="text/javascript" src="/template/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/template/script/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/template/bootstrap/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
