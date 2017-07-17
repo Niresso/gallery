@@ -8,12 +8,12 @@
  */
 class GalleryController
 {
-public function actionIndex(){
+    public function actionIndex(){
 
-    $user = new Gallery;
-    @$gallery = $user->getPictures();
+        $user = new Gallery;
+        @$gallery = $user->getPictures();
 
-    require_once(ROOT . '/views/index.php');
-    return true;
-}
+        require_once(ROOT . '/views/index.php');
+        return true;
+    }
 }

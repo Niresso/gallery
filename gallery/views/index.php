@@ -12,8 +12,9 @@
             <div class="btn btn-primary btn-lg"><a href="#" style="color: white">Сортировка по дате</a></div>
             <div class="btn btn-primary btn-lg"><a href="#" style="color: white">Сортировка по размеру</a></div>
             <div class="btn btn-primary btn-lg" style="float: right"><a href="#" style="color: white">Добавить изображение</a></div>
-        </div>
+        </div>'<pre>'
 
+<?  print_r($gallery); ?>'</pre>'
     </div>
 
 <?php include ROOT.'/views/layouts/footer.php'; ?>
