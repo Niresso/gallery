@@ -14,6 +14,7 @@ class GalleryController
         @$gallery = $user->getPictures();
         @$id = $user->getTotalID();
 
+
         @$user->type = array_pop(explode(".",@$_FILES['picture']['name']));
 
         if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -31,7 +32,7 @@ class GalleryController
 
             if ($errors == false){
 
-                if($user->addPictures() == true)
+                if($user->addPictures() == true && $user->checkPathImages() == true)
                     header("Location: /");
 
             }else{
@@ -41,4 +42,6 @@ class GalleryController
         require_once(ROOT . '/views/index.php');
         return true;
     }
+
+
 }

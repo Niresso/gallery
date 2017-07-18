@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/template/style/main.css">
     <script type="text/javascript" src="/template/script/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/template/bootstrap/js/bootstrap.min.js"></script>
-
+    <script type="text/javascript" src="/template/script/common.js"></script>
 
 </head>
 <body>

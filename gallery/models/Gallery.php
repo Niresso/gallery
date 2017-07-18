@@ -51,6 +51,28 @@ class Gallery
         return  $gallery;
     }
 
+    public static function getPicturesjson(){
+
+        $params =  array(
+            'host' => 'localhost',
+            'dbname' => 'gallery',
+            'user' => 'root',
+            'password' => '',
+        );
+
+        $dsn = "mysql:host={$params['host']};dbname={$params['dbname']}";
+        $db = new PDO($dsn, $params['user'], $params['password']);
+        $gallery = array();
+        $sql = 'SELECT * FROM pictures ORDER BY id DESC';
+        @$result = $db->query($sql);
+
+        $i = 0;
+        while($row = $result->fetch( )) {
+            $gallery[$i] = $row;
+            $i++;
+        }
+        return  $gallery;
+    }
     /**
      * @return bool
      */
@@ -62,8 +84,8 @@ class Gallery
         $result->bindParam(2,$this->type);
         $result->bindParam(3,$this->size);
         $result->bindParam(4,$this->comment);
-        $result->execute();
-        return $this->checkPathImages();
+
+        return  $result->execute();
     }
 
     /**
