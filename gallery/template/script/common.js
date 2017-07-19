@@ -3,11 +3,12 @@ $(document).ready(function () {
     $('#btn-add-picture').click(function () {
         $("#add-pictures").empty()
             .append(function() {
-                var div = document.createElement('form');
-                div.className = "form-add-pictures";
-                div.method = "post";
-                div.enctype = 'multipart/form-data';
-                return div;
+                var form = document.createElement('form');
+                form.className = "form-add-pictures";
+                form.method = "post";
+                form.id = "ajax_form";
+                form.enctype = 'multipart/form-data';
+                return form;
             });
         $(".form-add-pictures").append(function() {
             var div = document.createElement('div');
@@ -32,6 +33,7 @@ $(document).ready(function () {
                 input.type = "submit";
                 input.className = "btn btn-default";
                 input.name =  "submit";
+                input.id = "btn-add";
                 return input;
             });
         $("#f1").append(function() {
@@ -77,51 +79,85 @@ $(document).ready(function () {
                 input.id='exampleInputTextarea';
                 return input;
             });
-
-
     })
 });
 
-
-
-
-
-
-
 $( document ).ready(function() {
-
     $("#btn-sort").click(function(){
-            sendAjaxForm();
-            return false;
-        }
-    );
+        jQuery.ajax({
+            url:     '/components/response.php',
+            type:     "POST",
+            dataType: "html",
+            data: 'json',
+            success: function(response) {
+                result = jQuery.parseJSON(response);
+
+                $("div#gallery").empty();
+                $("#add-pictures").empty();
+                var aa = null;
+                for (var n=0; n<result.length;n++){
+                    aa += $('#gallery').append("<div class='col-lg-4'>"+ result[n].date
+                        + "<p><img src='/template/images/pic"+result[n].id+"."+result[n].format
+                        +"' width='300' height='220' alt='' /></p>" + result[n].comment
+                        + "<br /><a href='/delete/"
+                        + result[n].id + "' class='btn btn-primary'>Delete</a>"
+                    );
+                }
+            }
+        });
+    });
 });
 
-function sendAjaxForm() {
-    jQuery.ajax({
-        url:     '/components/response.php',
-        type:     "POST",
-        dataType: "html",
-        data: 'json',
-        success: function(response) {
+$( document ).ready(function() {
+    $("#btn-sort-date").click(function(){
+        jQuery.ajax({
+            url:     '/components/response-sort-date.php',
+            type:     "POST",
+            dataType: "html",
+            data: 'json',
+            success: function(response) {
+                result = jQuery.parseJSON(response);
 
-            result = jQuery.parseJSON(response);
-
-            $("div#gallery").empty();
-            $("#add-pictures").empty();
-            var aa = null;
-            for (var n=0; n<result.length;n++){
-                aa += ($('#gallery').append("<div class='col-lg-6'>"+ result[n].date
-                    + "<p><img src='/template/images/pic"+result[n].id+"."+result[n].format
-                    +"' width='85%' height='55%' alt='' /></p>" + result[n].comment
-                    + "<br /><a href='/delete/"
-                    + result[n].id + "' class='btn btn-primary'>Delete</a>"));
-
-
-
+                $("div#gallery").empty();
+                $("#add-pictures").empty();
+                var aa = null;
+                for (var n=0; n<result.length;n++){
+                    aa += $('#gallery').append("<div class='col-lg-4'>"+ result[n].date
+                        + "<p><img src='/template/images/pic"+result[n].id+"."+result[n].format
+                        +"' width='300' height='220' alt='' /></p>" + result[n].comment
+                        + "<br /><a href='/delete/"
+                        + result[n].id + "' class='btn btn-primary'>Delete</a>"
+                    );
+                }
             }
-
-        }
+        });
     });
-}
+});
+
+$( document ).ready(function() {
+    $("#btn-sort-size").click(function(){
+        jQuery.ajax({
+            url:     '/components/response-sort-size.php',
+            type:     "POST",
+            dataType: "html",
+            data: 'json',
+            success: function(response) {
+                result = jQuery.parseJSON(response);
+
+                $("div#gallery").empty();
+                $("#add-pictures").empty();
+                var aa = null;
+                for (var n=0; n<result.length;n++){
+                    aa += $('#gallery').append("<div class='col-lg-4'>"+ result[n].date
+                        + "<p><img src='/template/images/pic"+result[n].id+"."+result[n].format
+                        +"' width='300' height='220' alt='' /></p>" + result[n].comment
+                        + "<br /><a href='/delete/"
+                        + result[n].id + "' class='btn btn-primary'>Delete</a>"
+                    );
+                }
+            }
+        });
+    });
+});
+
 

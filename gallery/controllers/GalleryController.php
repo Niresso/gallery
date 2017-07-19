@@ -22,7 +22,7 @@ class GalleryController
             $errors =false;
             if (@$user->checkTypePicture()){
             }else{
-                $errors[]= 'Не правильный тип фильма';
+                $errors[]= 'Не правильный тип картинки';
             }
 
             if (@$user->checkSizePicture()){
@@ -42,6 +42,11 @@ class GalleryController
         require_once(ROOT . '/views/index.php');
         return true;
     }
+    public function actionDelete($id){
 
+        @$delete=Gallery::deletePicture($id);
+        header("Location: /");
+        return true;
+    }
 
 }

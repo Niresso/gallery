@@ -4,7 +4,7 @@
 class Gallery
 {
     public $name;
-    public $size = 1000000000;
+    public $size = 1000000;
     public $format  = array('image/jpg', 'image/png', 'image/jpeg');
     public $comment;
     public $type;
@@ -88,6 +88,7 @@ class Gallery
         return  $result->execute();
     }
 
+
     /**
      * @return mixed
      */
@@ -114,6 +115,19 @@ class Gallery
         }
         return false;
     }
+    public static function deletePicture($id){
+        $id = intval($id);
+
+        $db = Db::getConnection();
+        $sql = "DELETE FROM pictures WHERE id =:id ";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt;
+
+    }
+
 
 
 }
