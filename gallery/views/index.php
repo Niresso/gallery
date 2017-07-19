@@ -8,7 +8,7 @@
             <div id="gallery" >
                 <? foreach ($gallery as $items):?>
                     <div class="col-lg-6" id="helped">
-                        <div ><?= $items['name'] ;?></div>
+                        <div ><?= $items['date'] ;?></div>
                         <p><img src="/template/images/pic<?php echo $items['id'] ;?>.<?php echo $items['format'] ;?>" width="85%" height="55%" alt="" /></p>
                         <div ><p><?= $items['comment'] ;?> </p></div>
                     </div>
